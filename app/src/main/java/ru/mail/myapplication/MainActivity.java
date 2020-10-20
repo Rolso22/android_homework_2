@@ -6,9 +6,6 @@ import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static String POS = "pos";
-    private static String COLOR = "color";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,17 +17,5 @@ public class MainActivity extends AppCompatActivity {
                     .addToBackStack(null)
                     .commitAllowingStateLoss();
         }
-    }
-
-    public void onNumberClicked(int n, int color) {
-        Bundle bundle = new Bundle();
-        bundle.putInt(POS, n);
-        bundle.putInt(COLOR, color);
-        NumberFragment nf = new NumberFragment();
-        nf.setArguments(bundle);
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container, nf)
-                .addToBackStack(null)
-                .commitAllowingStateLoss();
     }
 }

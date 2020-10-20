@@ -14,14 +14,14 @@ import java.util.ArrayList;
 public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
     private ArrayList<Integer> data;
-    private Activity act;
+    private ClickedClass click;
 
     public MyAdapter(Activity act, int count) {
         data = new ArrayList<>();
-        this.act = act;
         for (int i = 1; i < count + 1; i++) {
             data.add(i);
         }
+        click = new ClickedClass((MainActivity)act);
     }
 
     @NonNull
@@ -41,7 +41,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
         holder.num.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainActivity) act).onNumberClicked(position + 1, color);
+                click.onNumberClicked(position + 1, color);
             }
         });
     }
