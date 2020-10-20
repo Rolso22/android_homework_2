@@ -21,7 +21,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
         for (int i = 1; i < count + 1; i++) {
             data.add(i);
         }
-        click = new ClickedClass((MainActivity)act);
+        click = new ClickedClass(act);
     }
 
     @NonNull

@@ -6,6 +6,10 @@ import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static String POS = "pos";
+    public static String COLOR = "color";
+    public static String COUNT = "count";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

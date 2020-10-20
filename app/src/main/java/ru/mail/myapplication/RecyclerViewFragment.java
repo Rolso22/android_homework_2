@@ -16,7 +16,6 @@ public class RecyclerViewFragment extends Fragment {
 
     private MyAdapter adapter;
     private static Integer count;
-    private static String COUNT = "count";
 
     @Nullable
     @Override
@@ -28,7 +27,7 @@ public class RecyclerViewFragment extends Fragment {
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), spanCount));
         if (count == null) {
             if (savedInstanceState != null) {
-                count = savedInstanceState.getInt(COUNT);
+                count = savedInstanceState.getInt(MainActivity.COUNT);
             } else count = getResources().getInteger(R.integer.count);
         }
         adapter = new MyAdapter(getActivity(), count);
@@ -54,7 +53,8 @@ public class RecyclerViewFragment extends Fragment {
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         if (count != null) {
-            outState.putInt(COUNT, count);
+            outState.putInt(MainActivity.COUNT, count);
         }
     }
 }
+

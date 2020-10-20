@@ -7,18 +7,16 @@ import androidx.fragment.app.FragmentActivity;
 
 public class ClickedClass {
 
-    private static String POS = "pos";
-    private static String COLOR = "color";
     private FragmentActivity act;
 
     public ClickedClass(Activity act) {
-        this.act = (FragmentActivity)act;
+        this.act = (FragmentActivity) act;
     }
 
     public void onNumberClicked(int n, int color) {
         Bundle bundle = new Bundle();
-        bundle.putInt(POS, n);
-        bundle.putInt(COLOR, color);
+        bundle.putInt(MainActivity.POS, n);
+        bundle.putInt(MainActivity.COLOR, color);
         NumberFragment nf = new NumberFragment();
         nf.setArguments(bundle);
         act.getSupportFragmentManager().beginTransaction()
