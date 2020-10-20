@@ -31,7 +31,7 @@ public class RecyclerViewFragment extends Fragment {
                 count = savedInstanceState.getInt(COUNT);
             } else count = getResources().getInteger(R.integer.count);
         }
-        adapter = new MyAdapter(getActivity().getSupportFragmentManager(), count);
+        adapter = new MyAdapter(getActivity(), count);
         recyclerView.setAdapter(adapter);
 
         Button btn = view.findViewById(R.id.button);

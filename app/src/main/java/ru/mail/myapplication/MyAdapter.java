@@ -1,14 +1,12 @@
 package ru.mail.myapplication;
 
+import android.app.Activity;
 import android.graphics.Color;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -16,13 +14,11 @@ import java.util.ArrayList;
 public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
     private ArrayList<Integer> data;
-    private FragmentManager fm;
-    private static String POS = "pos";
-    private static String COLOR = "color";
+    private Activity act;
 
-    public MyAdapter(FragmentManager fragmentManager, int count) {
+    public MyAdapter(Activity act, int count) {
         data = new ArrayList<>();
-        fm = fragmentManager;
+        this.act = act;
         for (int i = 1; i < count + 1; i++) {
             data.add(i);
         }
@@ -31,7 +27,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.number, parent, false);
         return new MyViewHolder(view);
     }
@@ -46,15 +41,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
         holder.num.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                bundle.putInt(POS, position + 1);
-                bundle.putInt(COLOR, color);
-                NumberFragment nf = new NumberFragment();
-                nf.setArguments(bundle);
-                fm.beginTransaction()
-                        .replace(R.id.container, nf)
-                        .addToBackStack(null)
-                        .commitAllowingStateLoss();
+                ((MainActivity) act).onNumberClicked(position + 1, color);
             }
         });
     }
