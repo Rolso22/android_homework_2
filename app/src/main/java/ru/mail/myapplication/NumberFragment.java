@@ -13,6 +13,8 @@ import androidx.fragment.app.Fragment;
 public class NumberFragment extends Fragment {
 
     private TextView num;
+    private static String POS = "pos";
+    private static String COLOR = "color";
 
     @Nullable
     @Override
@@ -20,8 +22,8 @@ public class NumberFragment extends Fragment {
         View view = inflater.inflate(R.layout.big_number, container, false);
         num = view.findViewById(R.id.big_number);
         Bundle bundle = getArguments();
-        num.setText(String.valueOf(bundle.getInt("pos")));
-        num.setTextColor(bundle.getInt("color"));
+        num.setText(String.valueOf(bundle.getInt(POS)));
+        num.setTextColor(bundle.getInt(COLOR));
         return view;
     }
 }
