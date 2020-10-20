@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class RecyclerViewFragment extends Fragment {
 
     private MyAdapter adapter;
-    private Integer count;
+    private static Integer count;
 
     @Nullable
     @Override
@@ -28,8 +28,7 @@ public class RecyclerViewFragment extends Fragment {
         if (count == null) {
             if (savedInstanceState != null) {
                 count = savedInstanceState.getInt(getResources().getString(R.string.count));
-            }
-            else count = getResources().getInteger(R.integer.count);
+            } else count = getResources().getInteger(R.integer.count);
         }
         adapter = new MyAdapter(getActivity().getSupportFragmentManager(), count);
         recyclerView.setAdapter(adapter);
@@ -53,6 +52,8 @@ public class RecyclerViewFragment extends Fragment {
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putInt(getResources().getString(R.string.count), count);
+        if (count != null) {
+            outState.putInt(getResources().getString(R.string.count), count);
+        }
     }
 }

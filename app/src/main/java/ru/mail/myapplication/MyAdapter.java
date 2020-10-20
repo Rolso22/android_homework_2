@@ -1,6 +1,7 @@
 package ru.mail.myapplication;
 
 import android.graphics.Color;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,8 +44,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
         holder.num.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putInt("pos", position + 1);
+                bundle.putInt("color", color);
+                NumberFragment nf = new NumberFragment();
+                nf.setArguments(bundle);
                 fm.beginTransaction()
-                        .replace(R.id.container, new NumberFragment(position, color))
+                        .replace(R.id.container, nf)
                         .addToBackStack(null)
                         .commitAllowingStateLoss();
             }
