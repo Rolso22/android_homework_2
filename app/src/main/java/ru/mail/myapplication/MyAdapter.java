@@ -38,12 +38,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
         holder.num.setText(String.valueOf(number));
         final int color = (number % 2 == 0) ? Color.RED : Color.BLUE;
         holder.num.setTextColor(color);
-        holder.num.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                click.onNumberClicked(position + 1, color);
-            }
-        });
+        holder.num.setOnClickListener(click.onNumberClicked(position + 1, color));
     }
 
     public void addItem() {
