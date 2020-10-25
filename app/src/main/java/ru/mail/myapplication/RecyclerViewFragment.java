@@ -9,10 +9,11 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class RecyclerViewFragment extends Fragment {
+public class RecyclerViewFragment extends Fragment implements NumberClicked {
 
     private MyAdapter adapter;
     private static Integer count;
@@ -30,7 +31,7 @@ public class RecyclerViewFragment extends Fragment {
                 count = savedInstanceState.getInt(MainActivity.COUNT);
             } else count = getResources().getInteger(R.integer.count);
         }
-        adapter = new MyAdapter(getActivity(), count);
+        adapter = new MyAdapter(this, count);
         recyclerView.setAdapter(adapter);
 
         Button btn = view.findViewById(R.id.button);
@@ -55,6 +56,25 @@ public class RecyclerViewFragment extends Fragment {
         if (count != null) {
             outState.putInt(MainActivity.COUNT, count);
         }
+    }
+
+    @Override
+    public View.OnClickListener onClicked(final int n, final int color) {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putInt(MainActivity.POS, n);
+                bundle.putInt(MainActivity.COLOR, color);
+                NumberFragment nf = new NumberFragment();
+                nf.setArguments(bundle);
+                getFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.container, nf)
+                        .addToBackStack(null)
+                        .commitAllowingStateLoss();
+            }
+        };
     }
 }
 

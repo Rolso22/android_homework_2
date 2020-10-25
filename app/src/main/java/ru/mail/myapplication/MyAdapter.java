@@ -14,14 +14,14 @@ import java.util.ArrayList;
 public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
     private ArrayList<Integer> data;
-    private Activity activity;
+    private NumberClicked click;
 
-    public MyAdapter(Activity act, int count) {
+    public MyAdapter(NumberClicked click, int count) {
         data = new ArrayList<>();
         for (int i = 1; i < count + 1; i++) {
             data.add(i);
         }
-        this.activity = act;
+        this.click = click;
     }
 
     @NonNull
@@ -38,7 +38,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
         holder.num.setText(String.valueOf(number));
         final int color = (number % 2 == 0) ? Color.RED : Color.BLUE;
         holder.num.setTextColor(color);
-        holder.num.setOnClickListener(new ClickedClass(activity, position + 1, color));
+        holder.num.setOnClickListener(click.onClicked(position + 1, color));
     }
 
     public void addItem() {
