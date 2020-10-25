@@ -1,6 +1,5 @@
 package ru.mail.myapplication;
 
-import android.app.Activity;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
